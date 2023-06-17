@@ -2,7 +2,8 @@ const bodyParser = require("body-parser");
 const express = require("express");
 const axios = require("axios");
 const https = require("https");
-import { apiKey } from './config.js';
+const dotenv = require("dotenv");
+require("dotenv").config();
 
 
 const app = express();     // An app instance used to initiate express
@@ -38,7 +39,7 @@ app.post("/", function(req,res){
    // Send back data to Mailchimp
    const options= {
     method: "POST",
-    auth: apiKey
+    auth: process.env.API_KEY
    }
    const request= https.request(url,options,function(response){ //Gives a response from the MailChimp Server
 
